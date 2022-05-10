@@ -1,0 +1,57 @@
+<nav class="navbar navbar-light bg-dark " >
+    <a class="navbar-brand  " href="#" style="color:rgb(85, 98, 237);"><b>&#169; HAFC Bank Pvt.Ltd </b></a>
+    <span class="quote text-light">Giving you freedom...</span>
+  </nav>
+  <!-- string intrpolation **ts to html** -->
+  <h3 style="color: rgb(196, 196, 85);">{{aim}}</h3>
+
+  
+  
+  <div class="container col-md-12 mt-0">
+      <div class="d-flex justify-content-center h-100">
+          <div class="card">
+              <div class="card-header">
+                  <h3 class="text-center">Sign In</h3>
+                  
+              </div>
+              <div class="card-body">
+                  <form [formGroup]="loginForm" (ngSubmit)="login()">
+                      <div class="input-group form-group">
+                          <div class="input-group-prepend">
+                              <span class="input-group-text"><i class="fas fa-user"></i></span>
+                          </div>
+                          <!-- property bindind in place holder -->
+                          <!-- (change)="acnoachange($event)" **event binding using argument -->
+                          <!-- <input type="text" class="form-control" [placeholder]="accno" (change)="acnoachange($event)" id="login_accno" required> -->
+                        <!-- <input type="text" class="form-control" placeholder="account number" id="login_accno" required> -->
+                        <!-- template reference #acno-->
+                        <!-- <input type="text" class="form-control" [placeholder]="accno" #acno id="login_accno" required> -->
+                        <input type="text" class="form-control" name="acno" [placeholder]="accno" formControlName="acno" id="login_accno" required>
+
+                          
+                      </div>
+                      <div style="color: rgb(202, 200, 39);" *ngIf="(this.loginForm.get('acno')?.touched||this.loginForm.get('acno')?.dirty)&&this.loginForm.get('acno')?.errors">invalid acount number</div>
+
+                      <div class="input-group form-group">
+                          <div class="input-group-prepend">
+                              <span class="input-group-text"><i class="fas fa-key"></i></span>
+                          </div>
+                          <!-- <input type="password" class="form-control" placeholder="password" (change)="pwdachange($event)" id="login_password" required> -->
+                          
+                          <input type="password" class="form-control" name="pwd" placeholder="password" formControlName="pwd" id="login_password" required>
+
+                        </div>
+                        <div style="color: rgb(202, 200, 39);" *ngIf="(this.loginForm.get('pwd')?.touched||this.loginForm.get('pwd')?.dirty)&&this.loginForm.get('pwd')?.errors">invalid password</div>
+
+                      
+                      <div class="form-group">
+                          <!-- (click)="login()"   is an event binding  the fnctn is defined in corresponding ts file -->
+                          <input type="submit" value="Login" class="btn float-right login_btn "  style="width:50%" >
+                      </div>
+                  </form>
+              </div>
+              <p style="color:white;align-items:baseline;">Not a user? <a routerLink="register">Register</a></p>
+          </div>
+      </div>
+  </div>
+  

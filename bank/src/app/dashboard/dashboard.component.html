@@ -1,0 +1,123 @@
+<nav class="navbar navbar-light bg-dark " >
+    <a class="navbar-brand  " href="#" style="color:rgb(85, 98, 237);"><b>&#169; HAFC Bank Pvt.Ltd </b></a>
+    <span class="quote text-light">Giving you freedom...</span>
+  </nav>
+  <h3 style="color: rgb(197, 197, 21);">welcome {{user}}  <button (click)="logOut()" style="float: right;" class="btn-warning">log out</button></h3>
+  <button (click)="deleteAcnt()" style="float: right;" class="btn-warning">delete my account</button>
+
+  <p style="color:white ;">Login Detail:- {{ldate | date :'mediumDate'}}</p>
+
+  <!-- transactn link -->
+<a routerLink="/transaction">transaction history</a>
+<app-deletecnfrm [item]="acno" (onCancel)="cancel()" (onDelete)="delete($event)"></app-deletecnfrm>
+
+<!-- <app-animation-demo></app-animation-demo> -->
+ 
+  <div [ngClass]="acno? 'style1' : ''" class="container col-md-12 mt-0"> 
+    <!-- ngClass:- attribute directive....define style -->
+      <div class="d-flex justify-content-center h-100">
+          <div class="card">
+              <div class="card-header">
+                  <h3 appHighlight class="text-center">Deposite form</h3>
+                  
+              </div>
+              <div class="card-body">
+                  <form [formGroup]="depositeForm" (ngSubmit)="deposite()">
+                    <div class="input-group form-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-user"></i></span>
+                        </div>
+                        
+                      <input type="text" class="form-control" name="acno" placeholder="account number"formControlName="acno" id="acno" required>
+
+                        
+                    </div>
+                    <div style="color: rgb(202, 200, 39);" *ngIf="(this.depositeForm.get('acno')?.touched||this.depositeForm.get('acno')?.dirty)&&this.depositeForm.get('acno')?.errors">invalid acount number</div>
+
+                      <div class="input-group form-group">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-key"></i></span>
+
+                          </div>
+                          
+                        <input type="password" class="form-control" name="pwd" placeholder="password" formControlName="pwd" id="pwd" required>
+
+                          
+                      </div>
+                      <div style="color: rgb(202, 200, 39);" *ngIf="(this.depositeForm.get('pwd')?.touched||this.depositeForm.get('pwd')?.dirty)&&this.depositeForm.get('pwd')?.errors">invalid password</div>
+
+                      <div class="input-group form-group">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-user"></i></span>
+                        </div>
+                          
+                          <input type="text" class="form-control" name="amount" placeholder="amount" formControlName="amount" id="amount" required>
+
+                        </div>
+                        <div style="color: rgb(202, 200, 39);" *ngIf="(this.depositeForm.get('amount')?.touched||this.depositeForm.get('amount')?.dirty)&&this.depositeForm.get('amount')?.errors">invalid amount</div>
+
+                      
+                      <div class="form-group">
+                          <input type="submit" value="deposite" class="btn float-right login_btn "  style="width:50%" >
+                      </div>
+                  </form>
+              </div>
+              <!-- <p style="color:white;align-items:baseline;">already exist <a routerLink="">log in</a></p> -->
+          </div>
+      </div>
+  </div>
+
+  <div class="container col-md-12 mt-0" [ngClass]="acno? 'style1' : ''">
+    <div class="d-flex justify-content-center h-100">
+        <div class="card">
+            <div class="card-header">
+                <h3 appHighlight class="text-center">Withdrow form</h3>
+                
+            </div>
+            <div class="card-body">
+                <form [formGroup]="withdrowForm" (ngSubmit)="withdrow()">
+                  <div class="input-group form-group">
+                      <div class="input-group-prepend">
+                          <span class="input-group-text"><i class="fas fa-user"></i></span>
+                      </div>
+                      
+                    <input type="text" class="form-control" name="acno1" placeholder="acount nmbr" formControlName="acno1" id="acno1" required>
+
+                      
+                  </div>
+                  <div style="color: rgb(202, 200, 39);" *ngIf="(this.withdrowForm.get('acno1')?.touched||this.withdrowForm.get('acno1')?.dirty)&&this.withdrowForm.get('acno1')?.errors">invalid acount number</div>
+
+                    <div class="input-group form-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-key"></i></span>
+                        </div>
+                        
+                      <input type="password" class="form-control" name="pwd1" placeholder="password" formControlName="pwd1" id="pwd1" required>
+
+                        
+                    </div>
+                    <div style="color: rgb(202, 200, 39);" *ngIf="(this.withdrowForm.get('pwd1')?.touched||this.withdrowForm.get('pwd1')?.dirty)&&this.withdrowForm.get('pwd1')?.errors">invalid password</div>
+
+                    <div class="input-group form-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-user"></i></span>
+
+                        </div>
+                        
+                        <input type="text" class="form-control" name="amount1" placeholder="amount" formControlName="amount1" id="amount1" required>
+
+                      </div>
+                      <div style="color: rgb(202, 200, 39);" *ngIf="(this.withdrowForm.get('amount1')?.touched||this.withdrowForm.get('amount1')?.dirty)&&this.withdrowForm.get('amount1')?.errors">invalid amount</div>
+
+                    
+                    <div class="form-group">
+                        <input type="submit" value="withdrow" class="btn float-right login_btn "  style="width:50%" >
+                    </div>
+                </form>
+            </div>
+            <!-- <p style="color:white;align-items:baseline;">already exist <a routerLink="">log in</a></p> -->
+        </div>
+    </div>
+</div>
+  
+
